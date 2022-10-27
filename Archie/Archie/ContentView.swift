@@ -45,7 +45,6 @@ struct Restaurant: Decodable {
                 //[String: Any]
                 let _ = print(">>>>", json, #line,"<<<<")
                 
-                
                 if let names = json["businesses"] as? [NSDictionary] {
                     let _ = print("interlude")
                     for r in names {
