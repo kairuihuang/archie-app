@@ -52,9 +52,9 @@ struct Restaurant: Decodable {
                         let ro = Restaurant(name: r["name"] as! String)
                             restaurants.append(ro)
                     }
-                    let _ = print(names[0]["name"] as Any)
-                    let _ = print("indeed")
-                    let _ = print(restaurants)
+                    //let _ = print(names[0]["name"] as Any)
+                    //let _ = print("indeed")
+                    //let _ = print(restaurants)
                 }
                 
                 //let jsonData = json.data(using: .utf8)!
