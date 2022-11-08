@@ -31,12 +31,12 @@ struct YelpAPI {
     let defaultSession = URLSession(configuration: .default)
     var dataTask: URLSessionDataTask?
     
-    mutating func setTerm(t: String) -> Void {
+    mutating func setTerm(t: String, lat: String, lon: String) -> Void {
         if t != "" {
             let underscored_str = t.replacingOccurrences(of: " ", with: "_")
-            domainURLString = "https://api.yelp.com/v3/businesses/search?location=Greenwich_Village&categories=restaurants&open_now=true&term=\(underscored_str)"
+            domainURLString = "https://api.yelp.com/v3/businesses/search?latitude=\(lat)&longitude=\(lon)&radius=8000&categories=restaurants&open_now=true&term=\(underscored_str)"
         } else {
-            domainURLString = "https://api.yelp.com/v3/businesses/search?location=Greenwich_Village&categories=restaurants&open_now=true"
+            domainURLString = "https://api.yelp.com/v3/businesses/search?latitude=\(lat)&longitude=\(lon)&radius=8000&categories=restaurants&open_now=true"
         }
         self.getRest() // get new set of restaurants based on term
     }
@@ -111,7 +111,7 @@ struct ContentView: View {
                         
                         callComplete = false
                         
-                        api.setTerm(t: t);
+                        api.setTerm(t: t,lat: String(coordinates.lat),lon: String(coordinates.lon));
                         
                         while(!callComplete) {
                             callLock.wait() //wait until call completes
