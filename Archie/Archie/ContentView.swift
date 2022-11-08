@@ -126,11 +126,11 @@ struct ContentView: View {
             }
             ZStack(alignment: .bottom) {
                     if go {
-                        Text(out).frame(width: 200, height: 300, alignment: .topLeading)
+                        Text(out).frame(width: 200, height: 300, alignment: .topLeading).foregroundColor(.black)
                         Text("Latitude: \(coordinates.lat)")
-                            .font(.largeTitle).frame(width: 200, height: 200, alignment: .topLeading)
+                            .font(.largeTitle).frame(width: 200, height: 200, alignment: .topLeading).foregroundColor(.black)
                         Text("Longitude: \(coordinates.lon)")
-                            .font(.largeTitle).frame(width: 200, height: 100, alignment: .topLeading)
+                            .font(.largeTitle).frame(width: 200, height: 100, alignment: .topLeading).foregroundColor(.black)
                     }
                     }.onAppear {
                         observeCoordinateUpdates()
