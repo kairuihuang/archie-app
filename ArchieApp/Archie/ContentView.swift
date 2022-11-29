@@ -24,6 +24,9 @@ struct Restaurant: Decodable {
         case swift, combine, debugging, xcode
     }
     var name: String
+    var id: String // JC: Added field to store restaurant's ID
+    var price: String
+    var rating: Float
 }
 
 var restaurants = [Restaurant]()
@@ -62,8 +65,8 @@ struct YelpAPI {
 
                 if let names = json["businesses"] as? [NSDictionary] {
                     for r in names {
-                        let ro = Restaurant(name: r["name"] as! String)
-                            restaurants.append(ro)
+                        let ro = Restaurant(name: r["name"] as! String, id:r["id"] as! String, price:["price"] as! String, rating:["rating"] as! Float)
+                        restaurants.append(ro)
                     }
                 }
             } catch {
