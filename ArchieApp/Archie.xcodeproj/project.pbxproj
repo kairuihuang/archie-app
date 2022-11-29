@@ -15,6 +15,9 @@
 		E35EC2F5291D563E00052567 /* ArchieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EC2F4291D563E00052567 /* ArchieUITests.swift */; };
 		E35EC2F7291D563E00052567 /* ArchieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EC2F6291D563E00052567 /* ArchieUITestsLaunchTests.swift */; };
 		E35EC304291D568700052567 /* location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EC303291D568700052567 /* location.swift */; };
+		E399C316292D5E2C0044CD80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399C315292D5E2C0044CD80 /* ViewController.swift */; };
+		E399C318292D606F0044CD80 /* reviewParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399C317292D606F0044CD80 /* reviewParse.swift */; };
+		E399C31A292D66EA0044CD80 /* currReviewParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399C319292D66EA0044CD80 /* currReviewParse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		E35EC2F4291D563E00052567 /* ArchieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchieUITests.swift; sourceTree = "<group>"; };
 		E35EC2F6291D563E00052567 /* ArchieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchieUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E35EC303291D568700052567 /* location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = location.swift; sourceTree = "<group>"; };
+		E399C315292D5E2C0044CD80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E399C317292D606F0044CD80 /* reviewParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reviewParse.swift; sourceTree = "<group>"; };
+		E399C319292D66EA0044CD80 /* currReviewParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = currReviewParse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +104,10 @@
 			children = (
 				E35EC2D9291D563B00052567 /* ArchieApp.swift */,
 				E35EC2DB291D563B00052567 /* ContentView.swift */,
+				E399C319292D66EA0044CD80 /* currReviewParse.swift */,
 				E35EC303291D568700052567 /* location.swift */,
+				E399C315292D5E2C0044CD80 /* ViewController.swift */,
+				E399C317292D606F0044CD80 /* reviewParse.swift */,
 				E35EC2DD291D563E00052567 /* Assets.xcassets */,
 				E35EC2DF291D563E00052567 /* Preview Content */,
 			);
@@ -260,9 +269,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E399C318292D606F0044CD80 /* reviewParse.swift in Sources */,
 				E35EC304291D568700052567 /* location.swift in Sources */,
 				E35EC2DC291D563B00052567 /* ContentView.swift in Sources */,
+				E399C316292D5E2C0044CD80 /* ViewController.swift in Sources */,
 				E35EC2DA291D563B00052567 /* ArchieApp.swift in Sources */,
+				E399C31A292D66EA0044CD80 /* currReviewParse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

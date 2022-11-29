@@ -10,6 +10,7 @@ import SwiftUI
 import CoreLocation
 import Foundation
 import Combine
+import UIKit
 
 //let container = UILayoutGuide()
 
@@ -18,12 +19,17 @@ var out = ""
 var m = DeviceLocationService()
 let callLock = NSCondition()
 var callComplete = false
+var bname = "Go"
+var g: [String] = ["","",""]
+
+//let g = reviewRank(adjectives: reviewTag(reviews: reviewList))
 
 struct Restaurant: Decodable {
     enum Category: String, Decodable {
         case swift, combine, debugging, xcode
     }
     var name: String
+    var id: String
 }
 
 var restaurants = [Restaurant]()
@@ -62,7 +68,7 @@ struct YelpAPI {
 
                 if let names = json["businesses"] as? [NSDictionary] {
                     for r in names {
-                        let ro = Restaurant(name: r["name"] as! String)
+                        let ro = Restaurant(name: r["name"] as! String, id: r["id"] as! String)
                             restaurants.append(ro)
                     }
                 }
@@ -95,54 +101,89 @@ struct ContentView: View {
     let m = api.getRest()
     var body: some View {
         GeometryReader { geometry in
-        VStack {
-            ZStack(alignment: .top) {
-                Text("Let Archie Decide")
-                    .padding().frame(width: 300, height: 100, alignment: .center).font(.custom("SignPainter",size: 34)).foregroundColor(.red)
-            }
-            ZStack(alignment: .center) {
-                Text("Any preferences?").foregroundColor(.black).frame(width: 200, height: 25, alignment: .trailing).font(.custom("Arial",size: 15))
-            }
-            ZStack(alignment: .center) {
-                TextField("", text: $t).textFieldStyle(RoundedBorderTextFieldStyle()).frame(width: 200, height: 25, alignment: .center).foregroundColor(.black)
-            }.frame(width: 100, height: 25, alignment: .center)
-            ZStack(alignment: .center) {
-                    Button("Go") {
+            VStack {
+                ZStack(alignment: .top) {
+                    Text("Let Archie Decide")
+                        .padding().frame(width: 300, height: 100, alignment: .center).font(.custom("SignPainter",size: 34)).foregroundColor(.red)
+                }
+                ZStack(alignment: .center) {
+                    Text("Any preferences?").foregroundColor(.black).frame(width: 200, height: 25, alignment: .trailing).font(.custom("Arial",size: 15))
+                }
+                ZStack(alignment: .center) {
+                    TextField("", text: $t).textFieldStyle(RoundedBorderTextFieldStyle()).frame(width: 200, height: 25, alignment: .center).foregroundColor(.black)
+                }.frame(width: 100, height: 25, alignment: .center).padding(.bottom, 50)
+                
+                ZStack(alignment: .center) {
+                    Button(bname) {
                         go.toggle()
+                        
+                        
                         if(!go) {
+                            //go = true
+                            bname = "Go"
+                            go.toggle()
+                        }
+                        
+                        else {
+                            bname = "Back"
+                            bname = "Go"
+                        }
+                         
+                        /*
+                        if(!go) {
+                            bname = "Go"
+                            //go.toggle()
+                            go = false
+                            go.toggle()
                             go = true
                         }
-                        
-                        callComplete = false
-                        
-                        api.setTerm(t: t,lat: String(coordinates.lat),lon: String(coordinates.lon));
-                        
-                        while(!callComplete) {
-                            callLock.wait() //wait until call completes
+                        else {
+                            bname = "Go"
+                            //go.toggle()
+                            //go.toggle()
+                            go = false
+                            go.toggle()
+                            //go = true
                         }
-                        
-                        if restaurants.count == 0 {
-                            out = "No results"
-                        } else {
-                            out = restaurants.randomElement()!.name
+                            */
+                            callComplete = false
+                            
+                            api.setTerm(t: t,lat: String(coordinates.lat),lon: String(coordinates.lon));
+                            
+                            while(!callComplete) {
+                                callLock.wait() //wait until call completes
+                            }
+                            
+                            if restaurants.count == 0 {
+                                out = "No results"
+                            } else {
+                                let rs = restaurants.randomElement()!
+                                //g = retRev(id: rs.id) as! [String]
+                                //out = rs.name+"\n\(g)"
+                                out = rs.name
+                                print("OUT")
+                                print(out)
+                                print("ID")
+                                print(rs.id)
+                            }
+                        }.frame(width: 50, height: 50, alignment: .center).padding().background(Color(red:0.8, green: 0, blue: 0)).clipShape(Circle()).foregroundColor(.white)
+                }
+                ZStack(alignment: .bottom) {
+                        if go {
+                            //let _ = reviewRank(adjectives: g)
+                            Text(out).frame(width: 200, height: 300, alignment: .top).foregroundColor(.black)
+                            Text("Latitude: \(coordinates.lat)")
+                                .font(.largeTitle).frame(width: 200, height: 200, alignment: .top).foregroundColor(.black)
+                            Text("Longitude: \(coordinates.lon)")
+                                .font(.largeTitle).frame(width: 200, height: 100, alignment: .top).foregroundColor(.black)
                         }
-                    }.frame(width: 200, height: 100, alignment: .center)
-            }
-            ZStack(alignment: .bottom) {
-                    if go {
-                        Text(out).frame(width: 200, height: 300, alignment: .top).foregroundColor(.black)
-                        Text("Latitude: \(coordinates.lat)")
-                            .font(.largeTitle).frame(width: 200, height: 200, alignment: .top).foregroundColor(.black)
-                        Text("Longitude: \(coordinates.lon)")
-                            .font(.largeTitle).frame(width: 200, height: 100, alignment: .top).foregroundColor(.black)
-                    }
-                    }.onAppear {
-                        observeCoordinateUpdates()
-                        observeDeniedLocationAccess()
-                        deviceLocationService.requestLocationUpdates()
-                    
-                    }.frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-        }.background(Image("vivid-blurred-colorful-wallpaper-background").resizable())
+                        }.onAppear {
+                            observeCoordinateUpdates()
+                            observeDeniedLocationAccess()
+                            deviceLocationService.requestLocationUpdates()
+                        
+                        }.frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+            }.background(Image("vivid-blurred-colorful-wallpaper-background").resizable())
         }
     }
     
