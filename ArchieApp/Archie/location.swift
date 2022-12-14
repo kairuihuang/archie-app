@@ -9,6 +9,58 @@ import Combine
 import CoreLocation
 import Foundation
 
+
+class DeviceLocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
+    
+    var coordinatesPublisher = PassthroughSubject<CLLocationCoordinate2D, Error>()
+    
+    var deniedLocationAccessPublisher = PassthroughSubject<Void, Never>()
+    
+    private override init() {
+        super.init()
+    }
+    
+    static let shared = DeviceLocationService()
+    
+    private lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.delegate = self
+        return manager
+    }()
+    
+    func requestLocationUpdates() {
+        print("ITS NOT DEAD")
+        print(locationManager.authorizationStatus)
+        switch locationManager.authorizationStatus {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        
+        case .authorizedWhenInUse, .authorizedAlways:
+            locationManager.startUpdatingLocation()
+            
+        default:
+            deniedLocationAccessPublisher.send()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        coordinatesPublisher.send(location.coordinate)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        coordinatesPublisher.send(completion: .failure(error))
+    }
+}
+
+
+
+
+
+
+
+/*
 //2nd Attempt 11/7
 
 //Observable Object should track updates in location
@@ -102,3 +154,4 @@ class DeviceLocationService: NSObject, CLLocationManagerDelegate, ObservableObje
     
     
 }
+*/

@@ -21,6 +21,8 @@ struct Restaurant: Decodable {
         case swift, combine, debugging, xcode
     }
     var name: String
+    var price: String
+    //var rating: String
 }
 
 var restaurants = [Restaurant]()
@@ -34,9 +36,9 @@ struct YelpAPI {
     mutating func setTerm(t: String, lat: String, lon: String) -> Void {
         if t != "" {
             let underscored_str = t.replacingOccurrences(of: " ", with: "_")
-            domainURLString = "https://api.yelp.com/v3/businesses/search?latitude=\(lat)&longitude=\(lon)&radius=8000&categories=restaurants&open_now=true&term=\(underscored_str)"
+            domainURLString = "https://api.yelp.com/v3/businesses/search?latitude=\(lat)&longitude=\(lon)&radius=800&categories=restaurants&open_now=true&term=\(underscored_str)"
         } else {
-            domainURLString = "https://api.yelp.com/v3/businesses/search?latitude=\(lat)&longitude=\(lon)&radius=8000&categories=restaurants&open_now=true"
+            domainURLString = "https://api.yelp.com/v3/businesses/search?latitude=\(lat)&longitude=\(lon)&radius=800&categories=restaurants&open_now=true"
         }
         self.getRest() // get new set of restaurants based on term
     }
@@ -59,7 +61,10 @@ struct YelpAPI {
 
                 if let names = json["businesses"] as? [NSDictionary] {
                     for r in names {
-                        let ro = Restaurant(name: r["name"] as! String)
+                        let rat = "\(r["rating"])"
+                        print("Rating")
+                        print(rat)
+                        let ro = Restaurant(name: r["name"] as! String, price: r["price"] as! String)
                             restaurants.append(ro)
                     }
                 }
@@ -120,7 +125,8 @@ struct ContentView: View {
                         if restaurants.count == 0 {
                             out = "No results"
                         } else {
-                            out = restaurants.randomElement()!.name
+                            let temp = restaurants.randomElement()!
+                            out = "\(temp.name)\n\(temp.price)"
                         }
                     }.frame(width: 200, height: 100, alignment: .center)
             }
