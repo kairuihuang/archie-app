@@ -15,9 +15,10 @@
 		E35EC2F5291D563E00052567 /* ArchieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EC2F4291D563E00052567 /* ArchieUITests.swift */; };
 		E35EC2F7291D563E00052567 /* ArchieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EC2F6291D563E00052567 /* ArchieUITestsLaunchTests.swift */; };
 		E35EC304291D568700052567 /* location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EC303291D568700052567 /* location.swift */; };
-		E399C316292D5E2C0044CD80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399C315292D5E2C0044CD80 /* ViewController.swift */; };
 		E399C318292D606F0044CD80 /* reviewParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399C317292D606F0044CD80 /* reviewParse.swift */; };
 		E399C31A292D66EA0044CD80 /* currReviewParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399C319292D66EA0044CD80 /* currReviewParse.swift */; };
+		E3A63BBB293FC945002D6A51 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3A63BBA293FC945002D6A51 /* MapKit.framework */; };
+		E3A63BBD293FCFE5002D6A51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A63BBC293FCFE5002D6A51 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,9 +50,11 @@
 		E35EC2F4291D563E00052567 /* ArchieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchieUITests.swift; sourceTree = "<group>"; };
 		E35EC2F6291D563E00052567 /* ArchieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchieUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E35EC303291D568700052567 /* location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = location.swift; sourceTree = "<group>"; };
-		E399C315292D5E2C0044CD80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E399C317292D606F0044CD80 /* reviewParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reviewParse.swift; sourceTree = "<group>"; };
 		E399C319292D66EA0044CD80 /* currReviewParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = currReviewParse.swift; sourceTree = "<group>"; };
+		E3A63BB8293F1DE3002D6A51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E3A63BBA293FC945002D6A51 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E3A63BBC293FCFE5002D6A51 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3A63BBB293FC945002D6A51 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +90,7 @@
 				E35EC2E9291D563E00052567 /* ArchieTests */,
 				E35EC2F3291D563E00052567 /* ArchieUITests */,
 				E35EC2D7291D563B00052567 /* Products */,
+				E3A63BB9293FC945002D6A51 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,11 +107,12 @@
 		E35EC2D8291D563B00052567 /* Archie */ = {
 			isa = PBXGroup;
 			children = (
+				E3A63BB8293F1DE3002D6A51 /* Info.plist */,
 				E35EC2D9291D563B00052567 /* ArchieApp.swift */,
 				E35EC2DB291D563B00052567 /* ContentView.swift */,
+				E3A63BBC293FCFE5002D6A51 /* ViewController.swift */,
 				E399C319292D66EA0044CD80 /* currReviewParse.swift */,
 				E35EC303291D568700052567 /* location.swift */,
-				E399C315292D5E2C0044CD80 /* ViewController.swift */,
 				E399C317292D606F0044CD80 /* reviewParse.swift */,
 				E35EC2DD291D563E00052567 /* Assets.xcassets */,
 				E35EC2DF291D563E00052567 /* Preview Content */,
@@ -137,6 +143,14 @@
 				E35EC2F6291D563E00052567 /* ArchieUITestsLaunchTests.swift */,
 			);
 			path = ArchieUITests;
+			sourceTree = "<group>";
+		};
+		E3A63BB9293FC945002D6A51 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E3A63BBA293FC945002D6A51 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,10 +283,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3A63BBD293FCFE5002D6A51 /* ViewController.swift in Sources */,
 				E399C318292D606F0044CD80 /* reviewParse.swift in Sources */,
 				E35EC304291D568700052567 /* location.swift in Sources */,
 				E35EC2DC291D563B00052567 /* ContentView.swift in Sources */,
-				E399C316292D5E2C0044CD80 /* ViewController.swift in Sources */,
 				E35EC2DA291D563B00052567 /* ArchieApp.swift in Sources */,
 				E399C31A292D66EA0044CD80 /* currReviewParse.swift in Sources */,
 			);
@@ -430,14 +444,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Archie/Preview Content\"";
+				DEVELOPMENT_TEAM = M3WMUCJSJQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Archie/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need this information to find restaurants near you";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need this information to find restaurants near you";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -447,6 +469,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Ask.Archie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -458,14 +481,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Archie/Preview Content\"";
+				DEVELOPMENT_TEAM = M3WMUCJSJQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Archie/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need this information to find restaurants near you";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need this information to find restaurants near you";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -475,6 +506,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Ask.Archie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -22,8 +22,8 @@ struct YelpAPIRev {
     var dataTask: URLSessionDataTask?
     
     mutating func setID(id: String) -> Void {
-        if id != "" {
-            domainURLString = "https://api.yelp.com/v3/businesses/f-m7-hyFzkf0HSEeQ2s-9A/reviews"
+        if id == "" {
+            domainURLString = ""
         } else {
             domainURLString = "https://api.yelp.com/v3/businesses/\(id)/reviews"
         }
@@ -40,7 +40,7 @@ struct YelpAPIRev {
             if let error = error {
                 let _ = print("DataTask error: " + error.localizedDescription + "\n")
             }
-            restaurants.removeAll() // clear restaurants from previous query
+            reviewList.removeAll() // clear restaurants from previous query
             do {
                 let jsonRev = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
 
@@ -58,6 +58,8 @@ struct YelpAPIRev {
             }
             //callComplete = true
             //callLock.broadcast() //wake up waiting threads
+            revCallComplete = true
+            revCallLock.broadcast()
         }.resume()
     }
 
@@ -114,21 +116,65 @@ func reviewRank(adjectives: [String]) -> Any{
     let ranking = adjInfo.sorted {$0.1 > $1.1}
     //print(type(of: ranking))
     //return ranking
-    //return (ranking[0].key, ranking[1].key, ranking[2].key)
-    return ranking
+    
+    print("rank type")
+    print(type(of: ranking))
+    var out: Any
+    if (ranking.isEmpty) {
+        out = [""]
+    }
+    else {
+        if ranking.count < 3 {
+            out = [""]
+        }
+        else {
+            out = (ranking[0].key, ranking[1].key, ranking[2].key)
+        }
+        print("out type")
+        print(type(of: out))
+    }
+    
+    return out
+
+    //return ranking
 
     //print(ranking[0].key, ranking[1].key, ranking[2].key)
 }
 
-func retRev(id: String)->[String] {
+func retRev(id: String)->Any {
     var Rev = YelpAPIRev()
     Rev.setID(id: id)
+    revCallComplete = false
     Rev.getRev()
+    while(!revCallComplete) {
+        revCallLock.wait()
+    }
     let parsedCorpus = reviewTag(reviews: reviewList)
     print("corpus")
     print(parsedCorpus)
-    let results = reviewRank(adjectives: parsedCorpus) as! [String]
-    return results
+    var results: Any
+    var out: Any
+    do {
+        results = reviewRank(adjectives: parsedCorpus) as! Any
+        if (results as AnyObject).count == 0 {
+                out = [""]
+        }
+        else {
+            //out = reviewRank(adjectives: parsedCorpus) as! NSArray
+            out = results
+        }
+        //g = out
+    }
+    catch {
+        print("error parsing corpus")
+    }
+    
+    //out = parsedCorpus
+    /*
+    revCallComplete = true
+    revCallLock.broadcast() //wake up waiting threads
+    */
+    return out
 }
 
 //let parsedCorpus = reviewTag(reviews: reviews)
